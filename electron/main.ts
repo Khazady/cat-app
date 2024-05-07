@@ -39,6 +39,9 @@ function createWindows() {
 
 app.whenReady().then(() => {
   createWindows();
+  ipcMain.handle("nextImageEvent", () => {
+    windows[0].webContents.send('changeImageEvent')
+  });
 });
 
 app.on("window-all-closed", () => {
