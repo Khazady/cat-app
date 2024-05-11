@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Button from "./components/button/button";
+import './styles/index.css'
 
 const buttonRoot = ReactDOM.createRoot(
   document.getElementById("button-root") as HTMLElement,
@@ -11,7 +12,7 @@ function ButtonWindow() {
   };
 
   return (
-    <main>
+    <main className='window'>
       <Button onClick={clickNextImage}>
         Next Cat Image
       </Button>

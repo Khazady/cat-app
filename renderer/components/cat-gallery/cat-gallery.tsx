@@ -1,5 +1,6 @@
 import { CatApiResponse, fetchCatImages } from '../../services/cat-api'
 import React, { useState, useEffect } from 'react'
+import styles from './cat-gallery.module.css'
 
 type Props = {isCalled: boolean, handleChange: () => void}
 
@@ -32,6 +33,7 @@ const CatGallery: React.FC<Props> = ({isCalled, handleChange}) => {
     <section>
       {catImages.length > 0 && (
         <img
+          className={styles.catImage}
           src={catImages[currentImageIndex].url}
           alt={`Cat № ${currentImageIndex} - ${catImages[currentImageIndex].id}`}
         />
