@@ -32,6 +32,7 @@ function createWindows() {
     height: height,
     x: width / 2,
     y: 0,
+
     webPreferences: {
       preload: join(__dirname, "preload.js"),
       sandbox: true,
