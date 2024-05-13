@@ -1,17 +1,28 @@
 import { CatApiResponse, fetchCatImages } from '../../services/cat-api'
-import React, { useState, useEffect } from 'react'
-import styles from './cat-gallery.module.css'
+import React, {useState, useEffect, useRef} from 'react'
+import {Image} from "../ui/image/image";
 
-type Props = {isCalled: boolean, handleChange: () => void}
+type Props = {
+  isCalled: boolean
+  handleChange: () => void
+}
 
 const CatGallery: React.FC<Props> = ({isCalled, handleChange}) => {
   const [catImages, setCatImages] = useState<CatApiResponse>([])
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  const ref = useRef(null)
 
   useEffect(() => {
     const loadCatImages = async () => {
+      if (ref.current) {
+        ref.current.setLoaded(false);
+      }
       const images = await fetchCatImages()
       setCatImages(images)
+      if (ref.current) {
+        ref.current.setLoaded(true);
+      }
     }
 
     loadCatImages()
@@ -28,12 +39,11 @@ const CatGallery: React.FC<Props> = ({isCalled, handleChange}) => {
     }
   }, [isCalled]);
 
-
   return (
     <section>
       {catImages.length > 0 && (
-        <img
-          className={styles.catImage}
+        <Image
+          ref={ref}
           src={catImages[currentImageIndex].url}
           alt={`Cat № ${currentImageIndex} - ${catImages[currentImageIndex].id}`}
         />

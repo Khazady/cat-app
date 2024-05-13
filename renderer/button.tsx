@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Button from "./components/button/button";
+import Button from "./components/ui/button/button";
 import './styles/index.css'
 
 const buttonRoot = ReactDOM.createRoot(

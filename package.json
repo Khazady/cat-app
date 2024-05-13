@@ -1,5 +1,5 @@
 {
-  "name": "cat-app",
+  "name": "electron-cat-app",
   "version": "1.0.1",
   "main": "dist-electron/main.js",
   "scripts": {
